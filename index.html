@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Light</title>
+  <style>
+    * {
+        font-family: 'SF Mono', sans-serif;
+    }
+
+    body {
+        margin: 50px;
+    }
+
+    p {
+        color: rgb(96, 96, 96);
+    }
+
+    #toggle-theme {
+        position: fixed;
+        bottom: 50px;
+        right: 50px;
+        cursor: pointer;
+    }
+    
+    /* Dark theme */
+    .dark-mode {
+        background-color: rgb(17, 17, 17);
+    }
+
+    .dark-mode p, .dark-mode a {
+        color: rgb(211, 211, 211);
+    }
+
+    /* Mobile */
+    @media only screen and (max-width: 600px) {
+        body {
+            margin: 20px;
+        }
+
+        #toggle-theme {
+            bottom: 20px;
+            right: 20px;
+        }
+    }
+  </style>
+</head>
+<body>
+
+    <p>I'm Light.</p>
+    <p>I currently wear many hats at <a href="https://threesigma.xyz">Three Sigma</a>, previously at <a href="https://muse.ai">muse.ai</a>.</p>
+    <a href="https://twitter.com/0x_light">X</a>
+    <button id="toggle-theme">Dark mode</button>
+
+<script>
+    // Theme toggle
+    const body = document.body;
+    const toggleBtn = document.getElementById('toggle-theme');
+
+    if (localStorage.getItem('theme') === 'dark-mode') {
+        body.classList.add('dark-mode');
+        toggleBtn.textContent = 'Light Mode';
+    }
+
+    toggleBtn.addEventListener('click', function() {
+    body.classList.toggle('dark-mode');
+    if (body.classList.contains('dark-mode')) {
+        localStorage.setItem('theme', 'dark-mode');
+        toggleBtn.textContent = 'Light mode';
+    } else {
+        localStorage.removeItem('theme');
+        toggleBtn.textContent = 'Dark mode';
+    }
+    });
+</script>
+
+</body>
+</html>
